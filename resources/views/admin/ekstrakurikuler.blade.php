@@ -49,7 +49,12 @@
                         <td>{{ $data->pendaftar->count() }}</td>
                         <td>
                             <button class="btn btn-info btn-sm px-2"><i data-feather="edit"></i></button>
-                            <button class="btn btn-outline-danger btn-sm px-2"><i data-feather="trash-2"></i></button>
+                            <form action="{{ Request::url().'/hapus' }}" method="POST" class="d-inline">
+                                @method('DELETE')
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $data->id }}">
+                                <button class="btn btn-outline-danger btn-sm px-2"><i data-feather="trash-2"></i></button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach

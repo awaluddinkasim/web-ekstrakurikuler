@@ -34,15 +34,21 @@ Route::get('/', function () {
 });
 
 Route::get('/'.md5('admin'), [AdminController::class, 'index'])->name('adminIndex');
+Route::get('/'.md5('admin').'/profil/{sub}', [AdminController::class, 'profil']);
 Route::get('/'.md5('admin').'/kegiatan/{jenis}', [AdminController::class, 'kegiatan']);
 Route::post('/'.md5('admin').'/kegiatan/{jenis}', [AdminController::class, 'kegiatanTambah']);
+Route::delete('/'.md5('admin').'/kegiatan/{jenis}/hapus', [AdminController::class, 'kegiatanHapus']);
 Route::get('/'.md5('admin').'/ekstrakurikuler', [AdminController::class, 'ekstrakurikuler']);
 Route::post('/'.md5('admin').'/ekstrakurikuler', [AdminController::class, 'ekstrakurikulerTambah']);
+Route::delete('/'.md5('admin').'/ekstrakurikuler/hapus', [AdminController::class, 'ekstrakurikulerHapus']);
 Route::get('/'.md5('admin').'/prestasi', [AdminController::class, 'prestasi']);
 Route::post('/'.md5('admin').'/prestasi', [AdminController::class, 'prestasiTambah']);
 Route::get('/'.md5('admin').'/users/{level}', [AdminController::class, 'users']);
+Route::get('/'.md5('admin').'/galeri/{id?}', [AdminController::class, 'galeri']);
+Route::post('/'.md5('admin').'/galeri/{id}', [AdminController::class, 'galeriTambah']);
 
 Route::get('/'.md5('user'), [UserController::class, 'index'])->name('userIndex');
+Route::get('/'.md5('user').'/profil/{sub}', [UserController::class, 'profil']);
 Route::get('/'.md5('user').'/kegiatan/{jenis}', [UserController::class, 'kegiatan']);
 Route::get('/'.md5('user').'/kegiatan/{jenis}/pengurus', [UserController::class, 'kegiatanPengurus']);
 Route::post('/'.md5('user').'/kegiatan/{jenis}/pengurus', [UserController::class, 'kegiatanPengurusTambah']);
@@ -54,6 +60,8 @@ Route::post('/'.md5('user').'/ekstrakurikuler/{id}', [UserController::class, 'ek
 Route::get('/'.md5('user').'/prestasi', [UserController::class, 'prestasi']);
 Route::get('/'.md5('user').'/prestasi/pengurus', [UserController::class, 'prestasiPengurus']);
 Route::post('/'.md5('user').'/prestasi/pengurus', [UserController::class, 'prestasiPengurusTambah']);
+Route::get('/'.md5('user').'/galeri/{id?}', [UserController::class, 'galeri']);
+Route::post('/'.md5('user').'/galeri/{id?}', [UserController::class, 'galeriTambah']);
 
 
 Route::get('/login', [AuthController::class, 'loginPage'])->name('login');

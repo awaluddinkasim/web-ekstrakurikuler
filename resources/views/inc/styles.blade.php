@@ -7,3 +7,5 @@
 
     <link rel="stylesheet" href="{{ asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/css/galeri.css') }}">

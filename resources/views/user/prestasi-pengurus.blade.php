@@ -11,8 +11,7 @@
             <nav aria-label="breadcrumb" class="breadcrumb-header">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('adminIndex') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="#">Kegiatan</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ ucfirst($jenis) }}</li>
+                    <li class="breadcrumb-item active" aria-current="page">Prestasi</li>
                 </ol>
             </nav>
         </div>

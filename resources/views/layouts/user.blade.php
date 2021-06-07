@@ -31,20 +31,20 @@
                         </li>
 
 
-                        <li class="sidebar-item  has-sub">
+                        <li class="sidebar-item has-sub {{ Request::segment(2) == 'profil' ? 'active' : '' }}">
                             <a href="#" class='sidebar-link'>
                                 <i data-feather="info" width="20"></i>
                                 <span>SMAN 7 Makassar</span>
                             </a>
 
-                            <ul class="submenu ">
+                            <ul class="submenu {{ Request::segment(2) == 'profil' ? 'active' : '' }}">
 
                                 <li>
-                                    <a href="#">Sejarah</a>
+                                    <a href="/{{ md5('user') }}/profil/sejarah">Sejarah</a>
                                 </li>
 
                                 <li>
-                                    <a href="#">Struktur</a>
+                                    <a href="/{{ md5('user') }}/profil/struktur">Struktur</a>
                                 </li>
 
                             </ul>
@@ -84,8 +84,8 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item">
-                            <a href="{{ route('userIndex') }}" class='sidebar-link'>
+                        <li class="sidebar-item {{ Request::segment(2) == 'galeri' ? 'active' : '' }}">
+                            <a href="{{ route('userIndex') }}/galeri" class='sidebar-link'>
                                 <i data-feather="image" width="20"></i>
                                 <span>Galeri</span>
                             </a>
@@ -93,7 +93,7 @@
 
 
                         <li class="sidebar-item">
-                            <a href="#" class='sidebar-link'>
+                            <a href="https://api.whatsapp.com/send?phone={{ '6281939123456' }}" target="_blank" class='sidebar-link'>
                                 <i data-feather="message-circle" width="20"></i>
                                 <span>Chat</span>
                             </a>

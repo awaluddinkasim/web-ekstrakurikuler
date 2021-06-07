@@ -10,4 +10,9 @@ class Galeri extends Model
     use HasFactory;
 
     protected $table = 'galeri';
+
+    public function ekstrakurikuler()
+    {
+        return $this->belongsTo(Ekstrakurikuler::class, 'id_ekstrakurikuler');
+    }
 }

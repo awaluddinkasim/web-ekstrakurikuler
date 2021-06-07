@@ -8,6 +8,7 @@ use Str;
 
 use App\Models\Ekstrakurikuler;
 use App\Models\Formulir;
+use App\Models\Galeri;
 use App\Models\Kegiatan;
 use App\Models\Prestasi;
 
@@ -21,6 +22,17 @@ class UserController extends Controller
     public function index()
     {
         return view('user.index');
+    }
+
+    public function profil($sub)
+    {
+        if ($sub == 'sejarah') {
+            return view('user.sejarah');
+        } elseif ($sub == 'struktur') {
+            return view('user.struktur');
+        } else {
+            return redirect()->routeName('userIndex');
+        }
     }
 
     public function kegiatan($jenis)
@@ -211,4 +223,37 @@ class UserController extends Controller
 
         return redirect('/'.md5('user').'/prestasi');
     }
+
+    public function galeri($id = null)
+    {
+        if ($id) {
+            $data = Ekstrakurikuler::find($id);
+            $daftarGaleri = Galeri::where('id_ekstrakurikuler', $id)->get();
+            return view('user.galeri-ekstrakurikuler', ['data' => $data, 'daftarGaleri' => $daftarGaleri]);
+        }
+        $ekstrakurikuler = Ekstrakurikuler::get();
+
+        return view('user.galeri', [
+            'daftarEkstrakurikuler' => $ekstrakurikuler
+        ]);
+    }
+
+    public function galeriTambah(Request $req, $id)
+    {
+        $ekstrakurikuler = Ekstrakurikuler::find($id);
+
+        $foldername = strtolower(str_replace(' ', '-', $ekstrakurikuler->ekstrakurikuler));
+
+        $file = $req->file('gambar');
+        $filename = Str::random(7).'.'.$file->getClientOriginalExtension();
+
+        $g = new Galeri;
+        $g->id_ekstrakurikuler = $id;
+        $g->gambar = $filename;
+        $g->save();
+
+        $file->move(public_path('galeri/'.$foldername), $filename);
+        return redirect('/'.md5('user').'/galeri/'.$id);
+    }
+
 }

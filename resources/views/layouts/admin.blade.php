@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-
     @include('inc.styles')
-
-
 </head>
 
 <body>
@@ -86,8 +83,8 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item">
-                            <a href="{{ route('adminIndex') }}" class='sidebar-link'>
+                        <li class="sidebar-item {{ Request::segment(2) == 'galeri' ? 'active' : '' }}">
+                            <a href="{{ route('adminIndex') }}/galeri" class='sidebar-link'>
                                 <i data-feather="image" width="20"></i>
                                 <span>Galeri</span>
                             </a>
