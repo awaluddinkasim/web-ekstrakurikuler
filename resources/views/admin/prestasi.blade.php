@@ -99,7 +99,7 @@
                         <label class="form-file-label d-block" for="gambar">
                             <span class="form-file-text">Pilih Gambar</span>
                         </label>
-                        <input type="file" class="form-file-input" id="gambar" name="gambar" required>
+                        <input type="file" class="form-file-input" id="gambar" name="gambar" accept=".jpg, .jpeg, .png" required>
                     </div>
                 </div>
                 <div class="modal-footer">

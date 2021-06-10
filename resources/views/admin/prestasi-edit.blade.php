@@ -42,7 +42,7 @@
                     <label class="form-file-label d-block" for="gambar">
                         <span class="form-file-text">Pilih Gambar Baru</span>
                     </label>
-                    <input type="file" class="form-file-input" id="gambar" name="gambar">
+                    <input type="file" class="form-file-input" id="gambar" name="gambar" accept=".jpg, .jpeg, .png" required>
                 </div>
                 <div class="clearfix">
                     <button type="submit" class="btn btn-primary float-end">Simpan</button>
