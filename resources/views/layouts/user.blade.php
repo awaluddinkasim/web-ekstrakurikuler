@@ -93,7 +93,7 @@
 
 
                         <li class="sidebar-item">
-                            <a href="https://api.whatsapp.com/send?phone={{ '6281939123456' }}" target="_blank" class='sidebar-link'>
+                            <a href="https://api.whatsapp.com/send?phone={{ '6285298654719' }}" target="_blank" class='sidebar-link'>
                                 <i data-feather="message-circle" width="20"></i>
                                 <span>Chat</span>
                             </a>

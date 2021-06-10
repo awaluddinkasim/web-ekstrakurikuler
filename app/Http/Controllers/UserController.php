@@ -11,6 +11,7 @@ use App\Models\Formulir;
 use App\Models\Galeri;
 use App\Models\Kegiatan;
 use App\Models\Prestasi;
+use App\Models\Setting;
 
 class UserController extends Controller
 {
@@ -27,9 +28,11 @@ class UserController extends Controller
     public function profil($sub)
     {
         if ($sub == 'sejarah') {
-            return view('user.sejarah');
+            $data = Setting::where('nama', 'sejarah')->first();
+            return view('user.sejarah', ['sub' => $sub, 'data' => $data]);
         } elseif ($sub == 'struktur') {
-            return view('user.struktur');
+            $data = Setting::where('nama', 'struktur')->first();
+            return view('user.struktur', ['sub' => $sub, 'data' => $data]);
         } else {
             return redirect()->routeName('userIndex');
         }

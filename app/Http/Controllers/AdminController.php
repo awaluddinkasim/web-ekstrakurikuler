@@ -34,7 +34,7 @@ class AdminController extends Controller
             $data = Setting::where('nama', 'struktur')->first();
             return view('admin.struktur', ['sub' => $sub, 'data' => $data]);
         } else {
-            return redirect()->routeName('userIndex');
+            return redirect()->routeName('adminIndex');
         }
     }
 
