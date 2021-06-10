@@ -43,7 +43,12 @@
                             <td>{{ $siswa->jk == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
                             <td>
                                 <button class="btn btn-info btn-sm px-2"><i data-feather="edit"></i></button>
-                                <button class="btn btn-outline-danger btn-sm px-2"><i data-feather="trash-2"></i></button>
+                                <form action="{{ Request::url().'/hapus' }}" method="post" class="d-inline">
+                                    @csrf
+                                    @method('delete')
+                                    <input type="hidden" name="username" value="{{ $siswa->username }}">
+                                    <button class="btn btn-outline-danger btn-sm px-2" type="submit"><i data-feather="trash-2"></i></button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach

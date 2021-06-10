@@ -61,7 +61,7 @@
                         <label class="form-file-label d-block" for="gambar">
                             <span class="form-file-text">Pilih Gambar</span>
                         </label>
-                        <input type="file" class="form-file-input" id="gambar" name="gambar">
+                        <input type="file" class="form-file-input" id="gambar" name="gambar" required>
                     </div>
                 </div>
                 <div class="modal-footer">

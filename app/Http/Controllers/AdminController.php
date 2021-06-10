@@ -322,4 +322,10 @@ class AdminController extends Controller
             return view('admin.userSiswa', ['daftarSiswa' => $data]);
         }
     }
+
+    public function userHapus(Request $req, $level)
+    {
+        User::destroy($req->username);
+        return redirect('/'.md5('admin').'/user/'.$level);
+    }
 }

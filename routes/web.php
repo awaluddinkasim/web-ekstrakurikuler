@@ -49,9 +49,10 @@ Route::delete('/'.md5('admin').'/ekstrakurikuler/hapus', [AdminController::class
 Route::delete('/'.md5('admin').'/prestasi/hapus', [AdminController::class, 'prestasiHapus']);
 Route::get('/'.md5('admin').'/prestasi/{id?}', [AdminController::class, 'prestasi']);
 Route::post('/'.md5('admin').'/prestasi/{id?}', [AdminController::class, 'prestasiTambah']);
-Route::get('/'.md5('admin').'/users/{level}', [AdminController::class, 'users']);
 Route::get('/'.md5('admin').'/galeri/{id?}', [AdminController::class, 'galeri']);
 Route::post('/'.md5('admin').'/galeri/{id}', [AdminController::class, 'galeriTambah']);
+Route::get('/'.md5('admin').'/users/{level}', [AdminController::class, 'users']);
+Route::delete('/'.md5('admin').'/users/{level}/hapus', [AdminController::class, 'userHapus']);
 
 Route::get('/'.md5('user'), [UserController::class, 'index'])->name('userIndex');
 Route::get('/'.md5('user').'/profil/{sub}', [UserController::class, 'profil']);
