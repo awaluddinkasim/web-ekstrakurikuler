@@ -57,7 +57,7 @@
                         </td>
                         @endif
                         <td>
-                            <button class="btn btn-info btn-sm px-2"><i data-feather="edit"></i></button>
+                            <button class="btn btn-info btn-sm px-2" onclick="document.location.href = '{{ Request::url().'/'.$data->id }}'"><i data-feather="edit"></i></button>
                             <form action="{{ Request::url().'/hapus' }}" method="post">
                                 @method('DELETE')
                                 @csrf

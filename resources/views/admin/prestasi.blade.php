@@ -50,8 +50,13 @@
                         <td>{{ $data->ekstrakurikuler->ekstrakurikuler }}</td>
                         <td>{{ $data->tahun }}</td>
                         <td>
-                            <button class="btn btn-info btn-sm px-2"><i data-feather="edit"></i></button>
-                            <button class="btn btn-outline-danger btn-sm px-2"><i data-feather="trash-2"></i></button>
+                            <button class="btn btn-info btn-sm px-2" onclick="document.location.href = '{{ Request::url().'/'.$data->id }}'"><i data-feather="edit"></i></button>
+                            <form action="{{ Request::url().'/hapus' }}" method="post" class="d-inline">
+                                @csrf
+                                @method('delete')
+                                <input type="hidden" name="id" value="{{ $data->id }}">
+                                <button class="btn btn-outline-danger btn-sm px-2" type="submit"><i data-feather="trash-2"></i></button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
@@ -94,7 +99,7 @@
                         <label class="form-file-label d-block" for="gambar">
                             <span class="form-file-text">Pilih Gambar</span>
                         </label>
-                        <input type="file" class="form-file-input" id="gambar" name="gambar">
+                        <input type="file" class="form-file-input" id="gambar" name="gambar" required>
                     </div>
                 </div>
                 <div class="modal-footer">

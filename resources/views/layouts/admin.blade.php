@@ -30,20 +30,20 @@
                         </li>
 
 
-                        <li class="sidebar-item  has-sub">
+                        <li class="sidebar-item has-sub {{ Request::segment(2) == 'profil' ? 'active' : '' }}">
                             <a href="#" class='sidebar-link'>
                                 <i data-feather="info" width="20"></i>
                                 <span>SMAN 7 Makassar</span>
                             </a>
 
-                            <ul class="submenu ">
+                            <ul class="submenu {{ Request::segment(2) == 'profil' ? 'active' : '' }}">
 
                                 <li>
-                                    <a href="#">Sejarah</a>
+                                    <a href="/{{ md5('admin') }}/profil/sejarah">Sejarah</a>
                                 </li>
 
                                 <li>
-                                    <a href="#">Struktur</a>
+                                    <a href="/{{ md5('admin') }}/profil/struktur">Struktur</a>
                                 </li>
 
                             </ul>
@@ -151,7 +151,7 @@
     </div>
 
     @include('inc.scripts')
-
+    @stack('scripts')
 </body>
 
 </html>

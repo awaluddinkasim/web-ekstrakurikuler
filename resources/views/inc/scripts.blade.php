@@ -11,4 +11,8 @@
     <script src="{{ asset('assets/js/vendors.js') }}"></script>
     <script src="{{ asset('assets/vendors/choices.js/choices.min.js') }}"></script>
 
+    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+
+    <script src="{{ asset('assets/js/bundle.js') }}"></script>
+
     <script src="{{ asset('assets/js/main.js') }}"></script>

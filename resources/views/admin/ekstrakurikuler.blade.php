@@ -48,7 +48,9 @@
                         <td>{{ $data->pembina }}</td>
                         <td>{{ $data->pendaftar->count() }}</td>
                         <td>
-                            <button class="btn btn-info btn-sm px-2"><i data-feather="edit"></i></button>
+                            {{-- <button class="btn btn-info btn-sm px-2"><i data-feather="edit"></i></button> --}}
+                            <a href="/{{ md5('admin') }}/ekstrakurikuler/{{$data->id}}/edit" class="btn btn-info btn-sm px-2"><i data-feather="edit"></i></a>
+
                             <form action="{{ Request::url().'/hapus' }}" method="POST" class="d-inline">
                                 @method('DELETE')
                                 @csrf
