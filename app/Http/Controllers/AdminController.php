@@ -326,6 +326,6 @@ class AdminController extends Controller
     public function userHapus(Request $req, $level)
     {
         User::destroy($req->username);
-        return redirect('/'.md5('admin').'/user/'.$level);
+        return redirect('/'.md5('admin').'/users/'.$level);
     }
 }
