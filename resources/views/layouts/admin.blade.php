@@ -33,13 +33,13 @@
                         <li class="sidebar-item has-sub {{ Request::segment(2) == 'profil' ? 'active' : '' }}">
                             <a href="#" class='sidebar-link'>
                                 <i data-feather="info" width="20"></i>
-                                <span>Profil</span>
+                                <span>SMAN 7 Makassar</span>
                             </a>
 
                             <ul class="submenu {{ Request::segment(2) == 'profil' ? 'active' : '' }}">
 
                                 <li>
-                                    <a href="/{{ md5('admin') }}/profil/sejarah">Sejarah</a>
+                                    <a href="/{{ md5('admin') }}/profil/data">Profil</a>
                                 </li>
 
                                 <li>

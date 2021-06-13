@@ -27,8 +27,8 @@ class AdminController extends Controller
 
     public function profil($sub)
     {
-        if ($sub == 'sejarah') {
-            $data = Setting::where('nama', 'sejarah')->first();
+        if ($sub == 'data') {
+            $data = Setting::where('nama', 'data')->first();
             return view('admin.sejarah', ['sub' => $sub, 'data' => $data]);
         } elseif ($sub == 'struktur') {
             $data = Setting::where('nama', 'struktur')->first();
@@ -165,6 +165,15 @@ class AdminController extends Controller
     public function kegiatanHapus(Request $req, $jenis)
     {
         Kegiatan::destroy($req->id);
+        return redirect('/'.md5('admin').'/kegiatan/'.$jenis);
+    }
+
+    public function kegiatanSelesai(Request $req, $jenis)
+    {
+        $data = Kegiatan::find($req->id);
+        $data->jenis = 'riwayat';
+        $data->save();
+
         return redirect('/'.md5('admin').'/kegiatan/'.$jenis);
     }
 
@@ -328,6 +337,23 @@ class AdminController extends Controller
             $data = User::where('level', $level)->orderBy('username', 'ASC')->get();
             return view('admin.userSiswa', ['daftarSiswa' => $data]);
         }
+    }
+
+    public function userEdit($level, $username)
+    {
+        $data = User::find($username);
+        return view('admin.user-edit', ['data' => $data]);
+    }
+
+    public function userUpdate(Request $req, $level, $username)
+    {
+        $u = User::find($username);
+        $u->nama = $req->nama;
+        $u->password = bcrypt($req->password);
+        $u->jk = $req->jk;
+        $u->save();
+
+        return redirect('/'.md5('admin').'/users/'.$level);
     }
 
     public function userHapus(Request $req, $level)

@@ -53,7 +53,12 @@
                         <td>{{ $data->ekstrakurikuler->ekstrakurikuler }}</td>
                         @if ($jenis == 'jadwal')
                         <td>
-                            <button class="btn btn-warning btn-sm">Selesai</button>
+                            <form action="{{ Request::url().'/'.md5('selesai') }}" method="post">
+                                @csrf
+                                @method('put')
+                                <input type="hidden" name="id" value="{{ $data->id }}">
+                                <button class="btn btn-warning btn-sm">Selesai</button>
+                            </form>
                         </td>
                         @endif
                         <td>

@@ -27,7 +27,7 @@ class UserController extends Controller
 
     public function profil($sub)
     {
-        if ($sub == 'sejarah') {
+        if ($sub == 'data') {
             $data = Setting::where('nama', 'sejarah')->first();
             return view('user.sejarah', ['sub' => $sub, 'data' => $data]);
         } elseif ($sub == 'struktur') {
@@ -182,6 +182,7 @@ class UserController extends Controller
     {
         $f = new Formulir;
         $f->id_ekstrakurikuler = $id;
+        $f->kelas = $req->kelas;
         $f->username = auth()->user()->username;
         $f->alamat = $req->alamat;
         $f->tempat_lahir = $req->tempat_lahir;
