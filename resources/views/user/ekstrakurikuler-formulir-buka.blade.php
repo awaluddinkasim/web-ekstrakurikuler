@@ -33,10 +33,22 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="kelas">Kelas</label>
+                        <p class="form-control-static" id="kelas">{{ $data->kelas }}</p>
+                    </div>
+
+                    <div class="form-group">
                         <label for="alamat" class="form-label">Alamat</label>
                         <p class="form-control-static" id="alamat">{{ $data->alamat }}</p>
 
                     </div>
+                    <div class="form-group">
+                        <label for="jk">Jenis Kelamin</label>
+                        <p class="form-control-static" id="jk">{{ $data->pendaftar->jk == 'L' ? 'Laki-laki' : 'Perempuan' }}</p>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
 
 
                     <div class="form-group">
@@ -48,13 +60,6 @@
                         <label for="tgl_lahir">Tanggal Lahir</label>
                         <p class="form-control-static" id="tgl_lahir">{{ Carbon\Carbon::parse($data->tgl_lahir)->isoFormat('D MMMM YYYY') }}</p>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="jk">Jenis Kelamin</label>
-                        <p class="form-control-static" id="jk">{{ $data->pendaftar->jk == 'L' ? 'Laki-laki' : 'Perempuan' }}</p>
-                    </div>
-
                     <div class="form-group">
                         <label for="usia">Usia</label>
                         <p class="form-control-static" id="usia">{{ $data->usia }} Tahun</p>

@@ -36,10 +36,25 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="kelas">Kelas</label>
+                            <input type="text" class="form-control" id="kelas" name="kelas" required>
+                        </div>
+                        <div class="form-group">
                             <label for="alamat" class="form-label">Alamat</label>
                             <textarea class="form-control" id="alamat" name="alamat" rows="3" required></textarea>
                         </div>
 
+                        <div class="form-group">
+                            <label for="jk">Jenis Kelamin</label>
+                            <select class="form-select" id="jk" name="jk" required>
+                                <option value="" hidden>Pilih</option>
+                                <option value="L" {{ auth()->user()->jk == 'L' ? 'selected' : ''}}>Laki-laki</option>
+                                <option value="P" {{ auth()->user()->jk == 'P' ? 'selected' : ''}}>Perempuan</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
 
                         <div class="form-group">
                             <label for="tempat_lahir">Tempat Lahir</label>
@@ -50,17 +65,6 @@
                             <label for="tgl_lahir">Tanggal Lahir</label>
                             <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" required>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="jk">Jenis Kelamin</label>
-                            <select class="form-select" id="jk" name="jk" required>
-                                <option value="" hidden>Pilih</option>
-                                <option value="L" {{ auth()->user()->jk == 'L' ? 'selected' : ''}}>Laki-laki</option>
-                                <option value="P" {{ auth()->user()->jk == 'P' ? 'selected' : ''}}>Perempuan</option>
-                            </select>
-                        </div>
-
                         <div class="form-group">
                             <label for="usia">Usia</label>
                             <input type="text" class="form-control" pattern="[0-9]+" id="usia" name="usia" autocomplete="off" required>
