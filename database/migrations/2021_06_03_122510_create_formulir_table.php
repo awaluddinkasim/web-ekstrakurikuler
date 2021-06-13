@@ -17,6 +17,7 @@ class CreateFormulirTable extends Migration
             $table->id();
             $table->foreignId('id_ekstrakurikuler');
             $table->string('username');
+            $table->string('kelas');
             $table->text('alamat');
             $table->string('tempat_lahir');
             $table->date('tgl_lahir');
