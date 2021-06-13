@@ -34,7 +34,7 @@
                         <li class="sidebar-item has-sub {{ Request::segment(2) == 'profil' ? 'active' : '' }}">
                             <a href="#" class='sidebar-link'>
                                 <i data-feather="info" width="20"></i>
-                                <span>SMAN 7 Makassar</span>
+                                <span>Profil</span>
                             </a>
 
                             <ul class="submenu {{ Request::segment(2) == 'profil' ? 'active' : '' }}">

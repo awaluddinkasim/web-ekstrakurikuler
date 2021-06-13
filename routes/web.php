@@ -51,24 +51,29 @@ Route::get('/'.md5('admin').'/prestasi/{id?}', [AdminController::class, 'prestas
 Route::post('/'.md5('admin').'/prestasi/{id?}', [AdminController::class, 'prestasiTambah']);
 Route::get('/'.md5('admin').'/galeri/{id?}', [AdminController::class, 'galeri']);
 Route::post('/'.md5('admin').'/galeri/{id}', [AdminController::class, 'galeriTambah']);
+Route::get('/'.md5('admin').'/galeri/{id}/'.md5('hapus').'/{galeri}', [AdminController::class, 'galeriHapus']);
 Route::get('/'.md5('admin').'/users/{level}', [AdminController::class, 'users']);
 Route::delete('/'.md5('admin').'/users/{level}/hapus', [AdminController::class, 'userHapus']);
 
 Route::get('/'.md5('user'), [UserController::class, 'index'])->name('userIndex');
 Route::get('/'.md5('user').'/profil/{sub}', [UserController::class, 'profil']);
 Route::get('/'.md5('user').'/kegiatan/{jenis}', [UserController::class, 'kegiatan']);
-Route::get('/'.md5('user').'/kegiatan/{jenis}/pengurus', [UserController::class, 'kegiatanPengurus']);
-Route::post('/'.md5('user').'/kegiatan/{jenis}/pengurus', [UserController::class, 'kegiatanPengurusTambah']);
+Route::put('/'.md5('user').'/kegiatan/{jenis}/pengurus/'.md5('selesai'), [UserController::class, 'kegiatanSelesai']);
+Route::get('/'.md5('user').'/kegiatan/{jenis}/pengurus/{id?}', [UserController::class, 'kegiatanPengurus']);
+Route::post('/'.md5('user').'/kegiatan/{jenis}/pengurus/{id?}', [UserController::class, 'kegiatanPengurusTambah']);
+Route::delete('/'.md5('user').'/kegiatan/{jenis}/pengurus/hapus', [UserController::class, 'kegiatanPengurusHapus']);
 Route::get('/'.md5('user').'/ekstrakurikuler', [UserController::class, 'ekstrakurikuler']);
 Route::delete('/'.md5('user').'/ekstrakurikuler'.'/'.md5('batal'), [UserController::class, 'ekstrakurikulerBatal']);
 Route::get('/'.md5('user').'/ekstrakurikuler/pendaftar/{id?}/{action?}', [UserController::class, 'ekstrakurikulerPendaftar']);
 Route::get('/'.md5('user').'/ekstrakurikuler/{id}', [UserController::class, 'ekstrakurikulerFormulir']);
 Route::post('/'.md5('user').'/ekstrakurikuler/{id}', [UserController::class, 'ekstrakurikulerFormulirSimpan']);
 Route::get('/'.md5('user').'/prestasi', [UserController::class, 'prestasi']);
-Route::get('/'.md5('user').'/prestasi/pengurus', [UserController::class, 'prestasiPengurus']);
-Route::post('/'.md5('user').'/prestasi/pengurus', [UserController::class, 'prestasiPengurusTambah']);
+Route::delete('/'.md5('user').'/prestasi/pengurus/hapus', [UserController::class, 'prestasiPengurusHapus']);
+Route::get('/'.md5('user').'/prestasi/pengurus/{id?}', [UserController::class, 'prestasiPengurus']);
+Route::post('/'.md5('user').'/prestasi/pengurus/{id?}', [UserController::class, 'prestasiPengurusTambah']);
 Route::get('/'.md5('user').'/galeri/{id?}', [UserController::class, 'galeri']);
 Route::post('/'.md5('user').'/galeri/{id?}', [UserController::class, 'galeriTambah']);
+Route::get('/'.md5('user').'/galeri/{id}/'.md5('hapus'), [UserController::class, 'galeriHapus']);
 
 
 Route::get('/login', [AuthController::class, 'loginPage'])->name('login');

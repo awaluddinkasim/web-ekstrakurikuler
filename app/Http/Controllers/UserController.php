@@ -62,10 +62,20 @@ class UserController extends Controller
         return redirect()->routeName('userIndex');
     }
 
-    public function kegiatanPengurus($jenis)
+    public function kegiatanPengurus($jenis, $id = null)
     {
+
         if ($jenis == 'riwayat') {
             $kegiatan = auth()->user()->ekstrakurikuler->kegiatan->where('jenis', $jenis);
+
+            if ($id) {
+                $data = Kegiatan::find($id);
+                return view('user.kegiatan-pengurus-edit', [
+                    'jenis' => $jenis,
+                    'data' => $data
+                ]);
+            }
+
             return view('user.kegiatan-pengurus', [
                 'jenis' => $jenis,
                 'daftarKegiatan' => $kegiatan
@@ -74,6 +84,14 @@ class UserController extends Controller
         elseif ($jenis == 'jadwal') {
             $kegiatan = auth()->user()->ekstrakurikuler->kegiatan->where('jenis', $jenis);
 
+            if ($id) {
+                $data = Kegiatan::find($id);
+                return view('user.kegiatan-pengurus-edit', [
+                    'jenis' => $jenis,
+                    'data' => $data
+                ]);
+            }
+
             return view('user.kegiatan-pengurus', [
                 'jenis' => $jenis,
                 'daftarKegiatan' => $kegiatan
@@ -82,34 +100,61 @@ class UserController extends Controller
         return redirect()->routeName('userIndex');
     }
 
-    public function kegiatanPengurusTambah(Request $req, $jenis)
+    public function kegiatanPengurusTambah(Request $req, $jenis, $id = null)
     {
-        if ($jenis == 'riwayat') {
-            $k = new Kegiatan;
-            $k->nama = $req->nama;
-            $k->tgl_mulai = $req->mulai;
-            $k->jam_mulai = $req->jam_mulai;
-            $k->tgl_selesai = $req->selesai;
-            $k->jam_selesai = $req->jam_selesai;
-            $k->id_ekstrakurikuler = auth()->user()->ekstrakurikuler->id;
-            $k->jenis = 'riwayat';
-            $k->save();
-            return redirect('/'.md5('user').'/kegiatan/riwayat');
-        } elseif ($jenis == 'jadwal') {
-            $k = new Kegiatan;
-            $k->nama = $req->nama;
-            $k->tgl_mulai = $req->mulai;
-            $k->jam_mulai = $req->jam_mulai;
-            $k->tgl_selesai = $req->selesai;
-            $k->jam_selesai = $req->jam_selesai;
-            $k->id_ekstrakurikuler = auth()->user()->ekstrakurikuler->id;
-            $k->jenis = 'jadwal';
-            $k->save();
-            return redirect('/'.md5('user').'/kegiatan/jadwal');
+        if ($id) {
+            $data = Kegiatan::find($id);
+            $data->nama = $req->nama;
+            $data->tgl_mulai = $req->mulai;
+            $data->jam_mulai = $req->jam_mulai;
+            $data->tgl_selesai = $req->selesai;
+            $data->jam_selesai = $req->jam_selesai;
+            $data->save();
+            return redirect('/'.md5('user').'/kegiatan'.'/'.$jenis);
+        } else {
+
+            if ($jenis == 'riwayat') {
+                $k = new Kegiatan;
+                $k->nama = $req->nama;
+                $k->tgl_mulai = $req->mulai;
+                $k->jam_mulai = $req->jam_mulai;
+                $k->tgl_selesai = $req->selesai;
+                $k->jam_selesai = $req->jam_selesai;
+                $k->id_ekstrakurikuler = auth()->user()->ekstrakurikuler->id;
+                $k->jenis = 'riwayat';
+                $k->save();
+                return redirect('/'.md5('user').'/kegiatan/riwayat');
+            } elseif ($jenis == 'jadwal') {
+                $k = new Kegiatan;
+                $k->nama = $req->nama;
+                $k->tgl_mulai = $req->mulai;
+                $k->jam_mulai = $req->jam_mulai;
+                $k->tgl_selesai = $req->selesai;
+                $k->jam_selesai = $req->jam_selesai;
+                $k->id_ekstrakurikuler = auth()->user()->ekstrakurikuler->id;
+                $k->jenis = 'jadwal';
+                $k->save();
+                return redirect('/'.md5('user').'/kegiatan/jadwal');
+            }
+            return redirect()->routeName('userIndex');
         }
-        return redirect()->routeName('userIndex');
     }
 
+    public function kegiatanSelesai(Request $req, $jenis)
+    {
+        $data = Kegiatan::find($req->id);
+        $data->jenis = 'riwayat';
+        $data->save();
+
+        return redirect('/'.md5('user').'/kegiatan/'.$jenis);
+    }
+
+    public function kegiatanPengurusHapus(Request $req, $jenis)
+    {
+        Kegiatan::destroy($req->id);
+
+        return redirect('/'.md5('user').'/kegiatan/'.$jenis);
+    }
 
     public function ekstrakurikuler()
     {
@@ -194,41 +239,83 @@ class UserController extends Controller
         return view('user.prestasi', ['daftarPrestasi' => $prestasi]);
     }
 
-    public function prestasiPengurus()
+    public function prestasiPengurus($id = null)
     {
         if (!auth()->user()->ekstrakurikuler) {
             return redirect('/'.md5('user').'/prestasi/pengurus');
         }
+
+        if ($id) {
+            $data = Prestasi::find($id);
+            return view('user.prestasi-pengurus-edit', ['data' => $data]);
+        }
+
         $prestasi = auth()->user()->ekstrakurikuler->prestasi;
         return view('user.prestasi-pengurus', ['daftarPrestasi' => $prestasi]);
     }
 
-    public function prestasiPengurusTambah(Request $req)
+    public function prestasiPengurusTambah(Request $req, $id = null)
     {
         if (!auth()->user()->ekstrakurikuler) {
             return redirect('/'.md5('user').'/prestasi/pengurus');
         }
-        $ekstrakurikuler = Ekstrakurikuler::find(auth()->user()->ekstrakurikuler->id);
 
-        $foldername = strtolower(str_replace(' ', '-', $ekstrakurikuler->ekstrakurikuler));
+        if ($id) {
+            $ekstrakurikuler = Prestasi::find($id)->ekstrakurikuler;
 
-        $file = $req->file('gambar');
-        $filename = Str::random(9);
+            $file = $req->file('gambar');
 
-        $p = new Prestasi;
-        $p->prestasi = $req->nama;
-        $p->id_ekstrakurikuler = auth()->user()->ekstrakurikuler->id;
-        $p->tahun = $req->tahun;
-        $p->gambar = $filename.'.'.$file->getClientOriginalExtension();
-        $p->save();
+            $foldername = strtolower(str_replace(' ', '-', $ekstrakurikuler->ekstrakurikuler));
 
-        $file->move(public_path('img/'.$foldername), $filename.'.'.$file->getClientOriginalExtension());
+            $file = $req->file('gambar');
 
+            $filename = Str::random(9);
+
+            $data = Prestasi::find($id);
+            $data->prestasi = $req->nama;
+            $data->tahun = $req->tahun;
+            if ($file) {
+                $data->gambar = $filename.'.'.$file->getClientOriginalExtension();
+                $file->move(public_path('img/'.$foldername), $filename.'.'.$file->getClientOriginalExtension());
+            }
+            $data->save();
+
+
+        } else {
+            $ekstrakurikuler = Ekstrakurikuler::find(auth()->user()->ekstrakurikuler->id);
+
+            $foldername = strtolower(str_replace(' ', '-', $ekstrakurikuler->ekstrakurikuler));
+
+            $file = $req->file('gambar');
+            $filename = Str::random(9);
+
+            $p = new Prestasi;
+            $p->prestasi = $req->nama;
+            $p->id_ekstrakurikuler = auth()->user()->ekstrakurikuler->id;
+            $p->tahun = $req->tahun;
+            if ($file) {
+                $p->gambar = $filename.'.'.$file->getClientOriginalExtension();
+                $file->move(public_path('img/'.$foldername), $filename.'.'.$file->getClientOriginalExtension());
+            }
+            $p->save();
+
+
+        }
         return redirect('/'.md5('user').'/prestasi');
+    }
+
+    public function prestasiPengurusHapus(Request $req)
+    {
+        Prestasi::destroy($req->id);
+        return redirect('/'.md5('user').'/prestasi/pengurus');
     }
 
     public function galeri($id = null)
     {
+        if (auth()->user()->ekstrakurikuler) {
+            $id = auth()->user()->ekstrakurikuler->id;
+        }
+
         if ($id) {
             $data = Ekstrakurikuler::find($id);
             $daftarGaleri = Galeri::where('id_ekstrakurikuler', $id)->get();
@@ -257,6 +344,15 @@ class UserController extends Controller
 
         $file->move(public_path('galeri/'.$foldername), $filename);
         return redirect('/'.md5('user').'/galeri/'.$id);
+    }
+
+    public function galeriHapus($id)
+    {
+        if (auth()->user()->ekstrakurikuler) {
+            Galeri::destroy($id);
+        }
+
+        return redirect('/'.md5('user').'/galeri');
     }
 
 }

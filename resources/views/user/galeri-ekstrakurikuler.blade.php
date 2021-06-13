@@ -33,10 +33,15 @@
         @endif
         <div class="card-body {{ !auth()->user()->ekstrakurikuler ? 'py-5' : '' }}">
             @forelse ($daftarGaleri as $galeri)
+            @if (auth()->user()->ekstrakurikuler)
+            <a class="galeri" href="{{ Request::url().'/'.$galeri->id.'/'.md5('hapus') }}">
+                <img src="{{ asset('galeri/'.strtolower(str_replace(' ', '-', $data->ekstrakurikuler)).'/'.$galeri->gambar) }}" alt="">
+            </a>
+            @else
             <div class="galeri">
                 <img src="{{ asset('galeri/'.strtolower(str_replace(' ', '-', $data->ekstrakurikuler)).'/'.$galeri->gambar) }}" alt="">
-                {{-- <i data-feather="trash" style="width: 100px; height: 100px" class="mx-auto"></i> --}}
             </div>
+            @endif
             @empty
             <div class="d-flex flex-column text-center text-muted py-5" style="opacity: .3">
                 <i data-feather="image" style="width: 150px; height: 150px" class="mx-auto"></i>

@@ -31,10 +31,9 @@
         </div>
         <div class="card-body">
             @forelse ($daftarGaleri as $galeri)
-            <div class="galeri">
+            <a class="galeri" href="{{ Request::url().'/'.md5('hapus').'/'.$galeri->id }}">
                 <img src="{{ asset('galeri/'.strtolower(str_replace(' ', '-', $data->ekstrakurikuler)).'/'.$galeri->gambar) }}" alt="">
-                {{-- <i data-feather="trash" style="width: 100px; height: 100px" class="mx-auto"></i> --}}
-            </div>
+            </a>
             @empty
             <div class="d-flex flex-column text-center text-muted py-5" style="opacity: .3">
                 <i data-feather="image" style="width: 150px; height: 150px" class="mx-auto"></i>

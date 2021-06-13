@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.user')
 
 
 @section('content')
@@ -10,7 +10,7 @@
         <div class="col-12 col-md-6 order-md-2 order-first">
             <nav aria-label="breadcrumb" class="breadcrumb-header">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('adminIndex') }}">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('userIndex') }}">Dashboard</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Ekstrakurikuler</li>
                 </ol>
             </nav>

@@ -247,10 +247,10 @@ class AdminController extends Controller
             $data->tahun = $req->tahun;
             if ($file) {
                 $data->gambar = $filename.'.'.$file->getClientOriginalExtension();
+                $file->move(public_path('img/'.$foldername), $filename.'.'.$file->getClientOriginalExtension());
             }
             $data->save();
 
-            $file->move(public_path('img/'.$foldername), $filename.'.'.$file->getClientOriginalExtension());
 
         } else {
             $ekstrakurikuler = Ekstrakurikuler::find($req->ekstrakurikuler);
@@ -309,6 +309,13 @@ class AdminController extends Controller
         $g->save();
 
         $file->move(public_path('galeri/'.$foldername), $filename);
+        return redirect('/'.md5('admin').'/galeri/'.$id);
+    }
+
+    public function galeriHapus($id, $galeri)
+    {
+        Galeri::destroy($galeri);
+
         return redirect('/'.md5('admin').'/galeri/'.$id);
     }
 

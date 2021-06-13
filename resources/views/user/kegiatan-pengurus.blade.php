@@ -50,12 +50,22 @@
                         <td>{{ Carbon\Carbon::parse($data->tgl_selesai)->isoFormat('D MMMM YYYY') }} pukul {{ Carbon\Carbon::parse($data->jam_selesai)->format('H:i') }}</td>
                         @if ($jenis == 'jadwal')
                         <td>
-                            <button class="btn btn-warning btn-sm">Selesai</button>
+                            <form action="{{ Request::url().'/'.md5('selesai') }}" method="post">
+                                @csrf
+                                @method('put')
+                                <input type="hidden" name="id" value="{{ $data->id }}">
+                                <button class="btn btn-warning btn-sm">Selesai</button>
+                            </form>
                         </td>
                         @endif
                         <td>
-                            <button class="btn btn-info btn-sm px-2"><i data-feather="edit"></i></button>
-                            <button class="btn btn-outline-danger btn-sm px-2"><i data-feather="trash-2"></i></button>
+                            <button class="btn btn-info btn-sm px-2" onclick="document.location.href = '{{ Request::url().'/'.$data->id }}'"><i data-feather="edit"></i></button>
+                            <form action="{{ Request::url().'/hapus' }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <input type="hidden" name="id" value="{{ $data->id }}">
+                                <button class="btn btn-outline-danger btn-sm px-2" type="submit"><i data-feather="trash-2"></i></button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
