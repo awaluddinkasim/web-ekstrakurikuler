@@ -349,7 +349,9 @@ class AdminController extends Controller
     {
         $u = User::find($username);
         $u->nama = $req->nama;
-        $u->password = bcrypt($req->password);
+        if ($req->password) {
+            $u->password = bcrypt($req->password);
+        }
         $u->jk = $req->jk;
         $u->save();
 
