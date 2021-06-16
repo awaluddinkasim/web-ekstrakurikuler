@@ -22,7 +22,14 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('user.index');
+        $data = Kegiatan::where('jenis', 'jadwal')->where('tgl_mulai', '>=', Carbon::now())->where('tgl_mulai', '<', Carbon::now()->addDays(7))->limit(10)->get();
+        $totalSiswa = User::where('level', 'siswa')->get()->count() - User::has('ekstrakurikuler')->get()->count();
+        $siswaMendaftar = User::has('formulir')->get()->count();
+        return view('user.index', [
+            'data' => $data,
+            'totalSiswa' => $totalSiswa,
+            'siswaMendaftar' => $siswaMendaftar
+        ]);
     }
 
     public function profil($sub)

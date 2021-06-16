@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 
 use App\Models\Ekstrakurikuler;
 use App\Models\Galeri;
@@ -22,13 +23,20 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin.index');
+        $data = Kegiatan::where('jenis', 'jadwal')->where('tgl_mulai', '>=', Carbon::now())->where('tgl_mulai', '<', Carbon::now()->addDays(7))->limit(10)->get();
+        $totalSiswa = User::where('level', 'siswa')->get()->count() - User::has('ekstrakurikuler')->get()->count();
+        $siswaMendaftar = User::has('formulir')->get()->count();
+        return view('admin.index', [
+            'data' => $data,
+            'totalSiswa' => $totalSiswa,
+            'siswaMendaftar' => $siswaMendaftar
+        ]);
     }
 
     public function profil($sub)
     {
         if ($sub == 'data') {
-            $data = Setting::where('nama', 'data')->first();
+            $data = Setting::where('nama', 'sejarah')->first();
             return view('admin.sejarah', ['sub' => $sub, 'data' => $data]);
         } elseif ($sub == 'struktur') {
             $data = Setting::where('nama', 'struktur')->first();
@@ -58,7 +66,7 @@ class AdminController extends Controller
             $cek->save();
         }
 
-        return redirect('/'.md5('admin').'/profil/sejarah');
+        return redirect('/'.md5('admin').'/profil/data');
     }
 
     public function strukturSimpan(Request $req)

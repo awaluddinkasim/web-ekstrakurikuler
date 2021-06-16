@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->text('nama');
             $table->string('password');
             $table->enum('jk', ['L', 'P']);
-            $table->enum('level', ['admin', 'ketua', 'siswa']);
+            $table->enum('level', ['admin', 'siswa']);
             $table->rememberToken();
             $table->timestamps();
         });
