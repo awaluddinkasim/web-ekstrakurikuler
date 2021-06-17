@@ -320,7 +320,7 @@ class UserController extends Controller
         return redirect('/'.md5('user').'/prestasi/pengurus');
     }
 
-    public function galeri($id = null)
+    public function galeri()
     {
         if (auth()->user()->ekstrakurikuler) {
             $id = auth()->user()->ekstrakurikuler->id;
@@ -338,8 +338,9 @@ class UserController extends Controller
         ]);
     }
 
-    public function galeriTambah(Request $req, $id)
+    public function galeriTambah(Request $req)
     {
+        $id = auth()->user()->ekstrakurikuler->id;
         $ekstrakurikuler = Ekstrakurikuler::find($id);
 
         $foldername = strtolower(str_replace(' ', '-', $ekstrakurikuler->ekstrakurikuler));
@@ -353,7 +354,7 @@ class UserController extends Controller
         $g->save();
 
         $file->move(public_path('galeri/'.$foldername), $filename);
-        return redirect('/'.md5('user').'/galeri/'.$id);
+        return redirect('/'.md5('user').'/galeri');
     }
 
     public function galeriHapus($id)
