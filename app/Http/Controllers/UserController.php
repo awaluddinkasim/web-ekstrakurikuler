@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use App\Models\Ekstrakurikuler;
 use App\Models\Formulir;
 use App\Models\Galeri;
+use App\Models\User;
 use App\Models\Kegiatan;
 use App\Models\Prestasi;
 use App\Models\Setting;
