@@ -14,9 +14,19 @@
         <div class="col-md-4">
             <div class="card shadow-none bg-primary">
                 <div class="card-body text-white">
-                    <h5>Siswa</h5>
+                    <h5>Kegiatan</h5>
                     <div class="clearfix">
-                        <h2 class="float-end">{{ $siswa }}</h2>
+                        <h2 class="float-end">{{ $kegiatan }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-none bg-primary">
+                <div class="card-body text-white">
+                    <h5>Prestasi</h5>
+                    <div class="clearfix">
+                        <h2 class="float-end">{{ $prestasi }}</h2>
                     </div>
                 </div>
             </div>
@@ -27,16 +37,6 @@
                     <h5>Ekstrakurikuler</h5>
                     <div class="clearfix">
                         <h2 class="float-end">{{ $ekstrakurikuler }}</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card shadow-none bg-primary">
-                <div class="card-body text-white">
-                    <h5>Prestasi Ekstrakurikuler</h5>
-                    <div class="clearfix">
-                        <h2 class="float-end">{{ $prestasi }}</h2>
                     </div>
                 </div>
             </div>
@@ -109,7 +109,7 @@ var myBar = new Chart(ctxBar, {
   data: {
     labels: ["Total Siswa", "Siswa Mendaftar"],
     datasets: [{
-      label: 'Students',
+      label: 'Siswa',
       backgroundColor: [chartColors.blue, chartColors.purple],
       data: [
         {{ $totalSiswa }},
@@ -131,7 +131,7 @@ var myBar = new Chart(ctxBar, {
       yAxes: [{
         ticks: {
           beginAtZero: true,
-          suggestedMax: 40 + 20,
+          suggestedMax: 10,
           padding: 10,
         },
         gridLines: {

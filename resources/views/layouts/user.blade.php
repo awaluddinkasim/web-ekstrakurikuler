@@ -137,5 +137,6 @@
     </div>
 
     @include('inc.scripts')
+    @stack('scripts')
 </body>
 </html>
