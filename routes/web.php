@@ -35,9 +35,9 @@ Route::get('/', function () {
 
 Route::get('/'.md5('admin'), [AdminController::class, 'index'])->name('adminIndex');
 Route::get('/'.md5('admin').'/profil/{sub}', [AdminController::class, 'profil']);
-Route::get('/'.md5('admin').'/profil/data/edit', [AdminController::class, 'profilSejarah']);
-Route::post('/'.md5('admin').'/profil/data/edit', [AdminController::class, 'profilSejarahSimpan']);
-Route::post('/'.md5('admin').'/profil/struktur', [AdminController::class, 'strukturSimpan']);
+Route::get('/'.md5('admin').'/profil/sejarah/edit', [AdminController::class, 'profilSejarah']);
+Route::post('/'.md5('admin').'/profil/sejarah/edit', [AdminController::class, 'profilSejarahSimpan']);
+Route::post('/'.md5('admin').'/profil/{sub}', [AdminController::class, 'profilSimpan']);
 Route::put('/'.md5('admin').'/kegiatan/{jenis}/'.md5('selesai'), [AdminController::class, 'kegiatanSelesai']);
 Route::get('/'.md5('admin').'/kegiatan/{jenis}/{id?}', [AdminController::class, 'kegiatan']);
 Route::post('/'.md5('admin').'/kegiatan/{jenis}/{id?}', [AdminController::class, 'kegiatanTambah']);

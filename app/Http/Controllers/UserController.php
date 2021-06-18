@@ -36,9 +36,12 @@ class UserController extends Controller
 
     public function profil($sub)
     {
-        if ($sub == 'data') {
+        if ($sub == 'sejarah') {
             $data = Setting::where('nama', 'sejarah')->first();
             return view('user.sejarah', ['sub' => $sub, 'data' => $data]);
+        } elseif ($sub == 'data') {
+            $data = Setting::where('nama', 'profil')->first();
+            return view('user.profil', ['sub' => $sub, 'data' => $data]);
         } elseif ($sub == 'struktur') {
             $data = Setting::where('nama', 'struktur')->first();
             return view('user.struktur', ['sub' => $sub, 'data' => $data]);

@@ -35,9 +35,12 @@ class AdminController extends Controller
 
     public function profil($sub)
     {
-        if ($sub == 'data') {
+        if ($sub == 'sejarah') {
             $data = Setting::where('nama', 'sejarah')->first();
             return view('admin.sejarah', ['sub' => $sub, 'data' => $data]);
+        } elseif ($sub == 'data') {
+            $data = Setting::where('nama', 'profil')->first();
+            return view('admin.profil', ['sub' => $sub, 'data' => $data]);
         } elseif ($sub == 'struktur') {
             $data = Setting::where('nama', 'struktur')->first();
             return view('admin.struktur', ['sub' => $sub, 'data' => $data]);
@@ -69,25 +72,43 @@ class AdminController extends Controller
         return redirect('/'.md5('admin').'/profil/data');
     }
 
-    public function strukturSimpan(Request $req)
+    public function profilSimpan(Request $req, $sub)
     {
-        $cek = Setting::where('nama', 'struktur')->first();
+        if ($sub == 'struktur') {
+            $cek = Setting::where('nama', 'struktur')->first();
 
-        $file = $req->file('gambar');
+            $file = $req->file('gambar');
 
-        if (!$cek) {
-            $s = new Setting;
-            $s->nama = 'struktur';
-            $s->value = 'struktur.'.$file->getClientOriginalExtension();
-            $s->save();
-        } else {
-            $cek->value = 'struktur.'.$file->getClientOriginalExtension();
-            $cek->save();
+            if (!$cek) {
+                $s = new Setting;
+                $s->nama = 'struktur';
+                $s->value = 'struktur.'.$file->getClientOriginalExtension();
+                $s->save();
+            } else {
+                $cek->value = 'struktur.'.$file->getClientOriginalExtension();
+                $cek->save();
+            }
+
+            $file->move(public_path('img/profil/'), 'struktur.'.$file->getClientOriginalExtension());
+
+        } elseif ($sub == 'data') {
+            $cek = Setting::where('nama', 'profil')->first();
+
+            $file = $req->file('gambar');
+
+            if (!$cek) {
+                $s = new Setting;
+                $s->nama = 'profil';
+                $s->value = 'profil.'.$file->getClientOriginalExtension();
+                $s->save();
+            } else {
+                $cek->value = 'profil.'.$file->getClientOriginalExtension();
+                $cek->save();
+            }
+
+            $file->move(public_path('img/profil/'), 'profil.'.$file->getClientOriginalExtension());
         }
-
-        $file->move(public_path('img/profil/'), 'struktur.'.$file->getClientOriginalExtension());
-
-        return redirect('/'.md5('admin').'/profil/struktur');
+        return redirect('/'.md5('admin').'/profil/'.$sub);
     }
 
     public function kegiatan($jenis, $id = null)
