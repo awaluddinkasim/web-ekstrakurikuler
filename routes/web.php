@@ -74,7 +74,7 @@ Route::get('/'.md5('user').'/prestasi', [UserController::class, 'prestasi']);
 Route::delete('/'.md5('user').'/prestasi/pengurus/hapus', [UserController::class, 'prestasiPengurusHapus']);
 Route::get('/'.md5('user').'/prestasi/pengurus/{id?}', [UserController::class, 'prestasiPengurus']);
 Route::post('/'.md5('user').'/prestasi/pengurus/{id?}', [UserController::class, 'prestasiPengurusTambah']);
-Route::get('/'.md5('user').'/galeri', [UserController::class, 'galeri']);
+Route::get('/'.md5('user').'/galeri/{id?}', [UserController::class, 'galeri']);
 Route::post('/'.md5('user').'/galeri', [UserController::class, 'galeriTambah']);
 Route::get('/'.md5('user').'/galeri/{id}/'.md5('hapus'), [UserController::class, 'galeriHapus']);
 

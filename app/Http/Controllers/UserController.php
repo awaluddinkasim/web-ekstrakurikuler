@@ -323,7 +323,7 @@ class UserController extends Controller
         return redirect('/'.md5('user').'/prestasi/pengurus');
     }
 
-    public function galeri()
+    public function galeri($id=null)
     {
         if (auth()->user()->ekstrakurikuler) {
             $id = auth()->user()->ekstrakurikuler->id;
