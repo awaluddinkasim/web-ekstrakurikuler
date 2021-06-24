@@ -125,6 +125,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <h2 class="ms-auto">SMAN 7 Makassar</h2>
                     <ul class="navbar-nav d-flex align-items-center navbar-light ms-auto">
                         <li class="dropdown">
                             <a href="#" data-bs-toggle="dropdown"
