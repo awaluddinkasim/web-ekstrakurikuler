@@ -67,7 +67,7 @@
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="2" class="text-center">Tidak ada kegiatan</td>
+                                    <td colspan="3" class="text-center">Tidak ada kegiatan</td>
                                 </tr>
                                 @endforelse
                             </tbody>

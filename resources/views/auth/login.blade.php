@@ -55,9 +55,9 @@
                                 <div class="d-grid gap-2 mt-4">
                                     <button class="btn btn-primary">Sign in</button>
                                 </div>
-                                <div class="d-flex justify-content-center pt-3">
+                                {{-- <div class="d-flex justify-content-center pt-3">
                                     <p>Belum punya akun? <a href="/register">Sign up</a></p>
-                                </div>
+                                </div> --}}
                             </form>
                         </div>
                     </div>

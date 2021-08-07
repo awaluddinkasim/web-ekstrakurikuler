@@ -37,7 +37,12 @@
 
                         <div class="form-group">
                             <label for="kelas">Kelas</label>
-                            <input type="text" class="form-control" id="kelas" name="kelas" required>
+                            <select class="form-select" id="kelas" name="kelas" required>
+                                <option value="" hidden>Pilih</option>
+                                <option value="X">X</option>
+                                <option value="XI">XI</option>
+                                <option value="XII">XII</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="alamat" class="form-label">Alamat</label>
@@ -67,7 +72,7 @@
                         </div>
                         <div class="form-group">
                             <label for="usia">Usia</label>
-                            <input type="text" class="form-control" pattern="[0-9]+" id="usia" name="usia" autocomplete="off" required>
+                            <input type="text" class="form-control" pattern="[0-9]+" maxlength="2" id="usia" name="usia" autocomplete="off" required>
                         </div>
 
                         <div class="form-group position-relative has-icon-left">
@@ -131,7 +136,13 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="gol_darah">Golongan Darah (opsional)</label>
-                        <input type="text" class="form-control" id="gol_darah" name="gol_darah" autocomplete="off">
+                        <select class="form-select" id="gol_darah" name="gol_darah" required>
+                            <option value="" hidden>Pilih</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="AB">AB</option>
+                            <option value="O">O</option>
+                        </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="riwayat_penyakit">Penyakit yang pernah diderita</label>

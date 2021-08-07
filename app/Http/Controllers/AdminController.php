@@ -368,6 +368,27 @@ class AdminController extends Controller
         }
     }
 
+    public function usersTambahSiswa(Request $req)
+    {
+        try {
+            $u = new User;
+            $u->nama = $req->nama;
+            $u->username = $req->nis;
+            $u->password = bcrypt($req->password);
+            $u->jk = $req->jk;
+            $u->level = 'siswa';
+            $u->save();
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCode = $e->errorInfo[1];
+            if($errorCode == 1062){
+                return redirect('/'.md5('admin').'/users/siswa')->with('failed', 'Gagal mendaftar, NIS <b>'.$req->nis.'</b> sudah terdaftar pada sistem');
+            }
+            return redirect('/'.md5('admin').'/users/siswa')->with('failed', 'Gagal mendaftar');
+        }
+
+        return redirect('/'.md5('admin').'/users/siswa');
+    }
+
     public function userEdit($level, $username)
     {
         $data = User::find($username);

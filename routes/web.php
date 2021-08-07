@@ -54,6 +54,7 @@ Route::get('/'.md5('admin').'/galeri/{id?}', [AdminController::class, 'galeri'])
 Route::post('/'.md5('admin').'/galeri/{id}', [AdminController::class, 'galeriTambah']);
 Route::get('/'.md5('admin').'/galeri/{id}/'.md5('hapus').'/{galeri}', [AdminController::class, 'galeriHapus']);
 Route::get('/'.md5('admin').'/users/{level}', [AdminController::class, 'users']);
+Route::post('/'.md5('admin').'/users/siswa', [AdminController::class, 'usersTambahSiswa']);
 Route::delete('/'.md5('admin').'/users/{level}/hapus', [AdminController::class, 'userHapus']);
 Route::get('/'.md5('admin').'/users/{level}/{username}', [AdminController::class, 'userEdit']);
 Route::post('/'.md5('admin').'/users/{level}/{username}', [AdminController::class, 'userUpdate']);
@@ -81,6 +82,6 @@ Route::get('/'.md5('user').'/galeri/{id}/'.md5('hapus'), [UserController::class,
 
 Route::get('/login', [AuthController::class, 'loginPage'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/register', [AuthController::class, 'registerPage']);
-Route::post('/register', [AuthController::class, 'register']);
+// Route::get('/register', [AuthController::class, 'registerPage']);
+// Route::post('/register', [AuthController::class, 'register']);
 Route::get('/logout', [AuthController::class, 'logout']);
