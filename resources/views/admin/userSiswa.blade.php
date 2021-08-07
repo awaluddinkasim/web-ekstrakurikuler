@@ -32,7 +32,7 @@
         <div class="card-body">
 
             @if (Session::has('failed'))
-            <div class="alert alert-danger-warning">{!! Session::get('failed') !!}</div>
+            <div class="alert alert-light-danger">{!! Session::get('failed') !!}</div>
             @endif
             <table class='table table-hover' id="table1">
                 <thead>

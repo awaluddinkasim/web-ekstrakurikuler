@@ -34,6 +34,22 @@ class UserController extends Controller
         ]);
     }
 
+    public function akun()
+    {
+        return view('user.akun');
+    }
+
+    public function akunSimpan(Request $req)
+    {
+        $data = User::find($req->nis);
+        $data->nama = $req->nama;
+        if ($req->password) {
+            $data->password = bcrypt($req->password);
+        }
+        $data->save();
+        return redirect()->route('akun-user');
+    }
+
     public function profil($sub)
     {
         if ($sub == 'sejarah') {

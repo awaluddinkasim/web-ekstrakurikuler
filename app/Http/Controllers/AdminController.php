@@ -33,6 +33,22 @@ class AdminController extends Controller
         ]);
     }
 
+    public function akun()
+    {
+        return view('admin.akun');
+    }
+
+    public function akunSimpan(Request $req)
+    {
+        $data = User::find($req->username);
+        $data->nama = $req->nama;
+        if ($req->password) {
+            $data->password = bcrypt($req->password);
+        }
+        $data->save();
+        return redirect()->route('akun-admin');
+    }
+
     public function profil($sub)
     {
         if ($sub == 'sejarah') {
