@@ -27,10 +27,16 @@ class UserController extends Controller
         $data = Kegiatan::where('jenis', 'jadwal')->where('tgl_mulai', '>=', Carbon::now())->where('tgl_mulai', '<', Carbon::now()->addDays(7))->limit(10)->get();
         $totalSiswa = User::where('level', 'siswa')->get()->count() - User::has('ekstrakurikuler')->get()->count();
         $siswaMendaftar = User::has('formulir')->get()->count();
+
+        $profil = Setting::where('nama', 'profil')->first();
+        $struktur = Setting::where('nama', 'struktur')->first();
+
         return view('user.index', [
             'data' => $data,
             'totalSiswa' => $totalSiswa,
-            'siswaMendaftar' => $siswaMendaftar
+            'siswaMendaftar' => $siswaMendaftar,
+            'profil' => $profil,
+            'struktur' => $struktur,
         ]);
     }
 

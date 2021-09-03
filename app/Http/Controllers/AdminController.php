@@ -26,10 +26,17 @@ class AdminController extends Controller
         $data = Kegiatan::where('jenis', 'jadwal')->where('tgl_mulai', '>=', Carbon::now())->where('tgl_mulai', '<', Carbon::now()->addDays(7))->limit(10)->get();
         $totalSiswa = User::where('level', 'siswa')->get()->count() - User::has('ekstrakurikuler')->get()->count();
         $siswaMendaftar = User::has('formulir')->get()->count();
+
+        $profil = Setting::where('nama', 'profil')->first();
+        $struktur = Setting::where('nama', 'struktur')->first();
+
+
         return view('admin.index', [
             'data' => $data,
             'totalSiswa' => $totalSiswa,
-            'siswaMendaftar' => $siswaMendaftar
+            'siswaMendaftar' => $siswaMendaftar,
+            'profil' => $profil,
+            'struktur' => $struktur,
         ]);
     }
 
@@ -124,7 +131,7 @@ class AdminController extends Controller
 
             $file->move(public_path('img/profil/'), 'profil.'.$file->getClientOriginalExtension());
         }
-        return redirect('/'.md5('admin').'/profil/'.$sub);
+        return redirect('/'.md5('admin'));
     }
 
     public function kegiatan($jenis, $id = null)

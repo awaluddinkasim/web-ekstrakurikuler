@@ -34,12 +34,12 @@ Route::get('/', function () {
 });
 
 Route::get('/'.md5('admin'), [AdminController::class, 'index'])->name('adminIndex');
+Route::post('/'.md5('admin').'/{sub}', [AdminController::class, 'profilSimpan']);
 Route::get('/'.md5('admin').'/akun', [AdminController::class, 'akun'])->name('akun-admin');
 Route::post('/'.md5('admin').'/akun', [AdminController::class, 'akunSimpan']);
-Route::get('/'.md5('admin').'/profil/{sub}', [AdminController::class, 'profil']);
-Route::get('/'.md5('admin').'/profil/sejarah/edit', [AdminController::class, 'profilSejarah']);
-Route::post('/'.md5('admin').'/profil/sejarah/edit', [AdminController::class, 'profilSejarahSimpan']);
-Route::post('/'.md5('admin').'/profil/{sub}', [AdminController::class, 'profilSimpan']);
+// Route::get('/'.md5('admin').'/profil/{sub}', [AdminController::class, 'profil']);
+// Route::get('/'.md5('admin').'/profil/sejarah/edit', [AdminController::class, 'profilSejarah']);
+// Route::post('/'.md5('admin').'/profil/sejarah/edit', [AdminController::class, 'profilSejarahSimpan']);
 Route::put('/'.md5('admin').'/kegiatan/{jenis}/'.md5('selesai'), [AdminController::class, 'kegiatanSelesai']);
 Route::get('/'.md5('admin').'/kegiatan/{jenis}/{id?}', [AdminController::class, 'kegiatan']);
 Route::post('/'.md5('admin').'/kegiatan/{jenis}/{id?}', [AdminController::class, 'kegiatanTambah']);

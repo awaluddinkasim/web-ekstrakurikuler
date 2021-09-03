@@ -42,6 +42,44 @@
             </div>
         </div>
     </div>
+
+
+    <div class="card">
+        <div class="card-header">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Profil</button>
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Struktur</button>
+                </div>
+            </nav>
+        </div>
+        <div class="card-body">
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    @if (isset($profil->value))
+                        <img src="{{ asset('img/profil/'.$profil->value) }}" alt="" style="width: 100%">
+                    @else
+                    <div class="d-flex flex-column text-center text-muted py-5" style="opacity: .3">
+                        <i data-feather="image" style="width: 150px; height: 150px" class="mx-auto"></i>
+                        <h4>Profil Kosong</h4>
+                    </div>
+                    @endif
+                </div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    @if (isset($struktur->value))
+                        <img src="{{ asset('img/profil/'.$struktur->value) }}" alt="" style="width: 100%">
+                    @else
+                    <div class="d-flex flex-column text-center text-muted py-5" style="opacity: .3">
+                        <i data-feather="image" style="width: 150px; height: 150px" class="mx-auto"></i>
+                        <h4>Struktur Belum Ada</h4>
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="row">
         <div class="col-md-7">
             <div class="card">

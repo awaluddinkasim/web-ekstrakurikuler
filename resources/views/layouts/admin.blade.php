@@ -29,7 +29,7 @@
                             </a>
                         </li>
 
-
+{{--
                         <li class="sidebar-item has-sub {{ Request::segment(2) == 'profil' ? 'active' : '' }}">
                             <a href="#" class='sidebar-link'>
                                 <i data-feather="info" width="20"></i>
@@ -48,7 +48,7 @@
 
                             </ul>
 
-                        </li>
+                        </li> --}}
 
                         <li class="sidebar-item has-sub {{ Request::segment(2) == 'kegiatan' ? 'active' : '' }}">
                             <a href="#" class='sidebar-link'>
